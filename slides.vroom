@@ -1,0 +1,407 @@
+---- config
+title: Vroom!
+indent: 5
+auto_size: 1
+vim_opts: '-u NONE'
+skip: 0
+---- center
+
+10 Things You Don't Know About YAML
+
+Ingy döt Net
+
+OpenWest 2015, Oren Utah
+
+----
+== 10 Things You Don't Know About YAML
+
+* Ingy döt Net
+  * Seattle
+  * Oui Street  /  Liquid Web
++* Invented YAML
++* YAML is a deep subject
++* People learn YAML in 5 minutes
++* 60+ Points About YAML
++* Hopefully 10 are new to you!
+  * Keep a tally!
++* Interactive Talk
+  * IRC #yaml on irc.freenode.net
+  * https://gist.github.com/
+
+----
+Q: What is YAML?
++A: YAML is a data serialization language.
+----
+Q: Is XML a serialization language?
++A: No. It's a text markup language.
+----
+Q: Is JSON a serialzation language?
++A: No. It is a data interchange language.
+----
+Q: What problem was YAML originally trying to solve?
++A: XML
+----
+Q: Who created YAML?
++A: Clark Evans, Oren Ben-Kiki and Ingy döt Net.
+----
+Q: Is YAML a strict subset of JSON?
++A: Of course not!
+----
+Q: Is YAML a strict superset of JSON?
++A: Yes. http://en.wikipedia.org/wiki/JSON#YAML
+----
+Q: When were YAML and JSON invented?
++A:
+- YAML: 2001, 2003
+- JSON: 2001, 2005
+----
+Q: How did Ingy get involved in YAML?
++A: Data::Denter
+
+    http://search.cpan.org/dist/Data-Denter/Denter.pod
+----
+Q: Have Clark, Oren and Ingy ever all met at same time?
++A: Yes. In the Fall of 2003 in Portland OR foe a week.
+----
+Q: What language was the first YAML processor written in?
++A: Perl. Dec 2001.
+----
+Q: What language made YAML a success?
++A: Ruby. Shipped as core in 2003.
+----
+Q: How many YAML parsers are written in C?
++A: 2. libyaml and libsyck
+----
+Q: Which came first? libyaml or libsyck?
++A: libsyck 2003  libsyck 2006
+----
+Q: Which is faster? libyaml or libsyck?
++A: I don't know. :)
+----
+Q: What parsing style is libyaml or libsyck?
++A:
+- libyaml: streaming
+- libsyck: inside-out
+----
+Q: Who wrote libsyck?
++A: Why.
+----
+Q: Why is it called Syck?
++A: Why was very Sick.
+----
+Q: Who is Why?
++A: Why the Lucky Stiff. A poignant Ruby programmer.
+
+   http://mislav.uniqpath.com/poignant-guide/book/chapter-1.html
+----
+Q: Where is Why?
++A: Salt Lake City!
+----
+Q: Who wrote libyaml?
++A: Kirill Siminov
+----
+Q: Why?
++A: No. Kirill!
+----
+Q: Why did Kirill write libyaml?
++A: GSoC 2006
+----
+Q: Does YAML have an RFC?
++A: No
+----
+Q: Is YAML an OASIS project?
++A: No
+----
+Q: Does YAML have a foundation?
++A: No
+----
+Q: Does YAML have a spec?
++A: YES. OH YES. :\
+
+  http://yaml.org/spec/1.2/spec.html
+----
+Q: Is the YAML Spec simple?
++A: Hahahahahahahahahahahahahahahahahaha!!!!!!!!!!!
+----
+Q: Which is more correct. libyaml or the YAML Spec?
++A: :)
+----
+Q: Why aren't hardtab chars allowed for indentation?
++A: Because YAML ♥s U!
+----
+Q: What's the current version of the YAML Spec?
++A: 1.2
+----
+Q: What did 1.2 add over 1.1?
++A: Full JSON compliance
+----
+Q: Which C libraries support YAML 1.2?
++A: None :(
+----
+Q: What Does YAML Stand For?
++A: YAML Ain't Markup Language
+----
+Q: What Does YAML Stand For?
++A: Yet Another Multi-column Layout
+
+   http://www.yaml.de/
+   Copyright 2005-2013
+----
+Q: What was Ingy's reaction when yaml.de people wanted yaml.com?
++A: http://yaml.com
+----
+Q: Who uses YAML?
++A: Everyone
+
+* YAML shows up everywhere (mostly config)
+* Ansible
+* Travis
+* Canonical
+* Who use YAML in a big way?
+----
+Q: Who talks about YAML?
++A: Nobody!
+
+* Tiny IRC channel
+* Dead mailing list
+* YAML is just there, like the air
+----
+Q: What format is http://yaml.org in?
++A: YAML
+----
+Q: What CSS framework does http://yaml.com use?
++A: YAML
+----
+Q: How many major Perl/YAML frameworks on CPAN?
++A: 4 http://0:1234
+----
+Q: How many scalar forms does YAML have?
++A:
+- Plain: this is the value
+- Single Quoted: 'this is the value'
+- Double Quoted: "this is the value"
+- Literal Block: |
+    this is
+    the value
+- Folded Block: >
+    this is
+    the value
+----
+Q: What "kinds" of data structures does YAML support?
++A:
+- mapping (hash, dictionary, associative-array_
+- sequence (array, list)
+- scalar (value, string, number, boolean)
+----
+Q: What kinds of data can be hash keys in YAML?
++A: All 3
+----
+Q: What does YAML have that JSON doesn't?
++A:
+- Tags (types)
+- Aliases/Anchors (references)
+- Non string mapping keys
+- Multi-document streams
+----
+Q: When do you need to quote a YAML string?
++A:
+- When first character is special
+- When it contains ': '
+- When it contains ' #'
+----
+Q: What does a "parser" do?
++A: Turns tokens into events.
+
+         Load          Dump
+               State
+
+              / File \                Disk encoding
+         Read          Write
+              >Stream<                Language scalar/string
+          Lex          (Paint?)
+              >Token <                Pieces of Stream
+        Parse          Emit
+              >Event <                (ie START_MAP, SCALAR, etc)
+      Compose          Decompose
+              >Graph <                Generic AST
+    Construct          Deconstruct
+              \Object/                Native Perl data
+
+
+
+
+----
+== Parse This YAML
+
+* Show YAML examples
+* Some may be surprising
+* Some may be errors
+
+----
+a: value
+b: good
+
++It could mean many things. YAML requires Schema.
+
+----
+foo: bar: baz
+
++Error: Colon in value.
+
+----
+ + foo
+ + bar
+ + baz
+
++"+ foo + bar + baz"
+
+----
+url: http://yaml.org
+
++{"url":"http://yaml.org"}
+
+----
+url: http://yaml.org#example
+
++{"url":"http://yaml.org#example"}
+
+----
+? foo
+: bar
+
++{"foo": "bar"}
+
+----
+- foo: bar
+- - - baz:
+      - boom
+
++[{"foo":"bar"},[[{"baz":"boom"}]]]
+
+----
+- a
+  - b
+- c
+
++["a - b","c"]
+
+----
+[a, b, c, d]
+
++["a","b","c","d"]
+
+----
+{a: b, c: d}
+
++{"a":"b","c":"d"}
+
+----
+foo:
+- bar: [a, b, c, d]
+
++{"foo":["bar":["a","b","c","d"]]}
+
+----
+{a, b, c, d}
+
++{"a":null,"b":null,"c":null,"d":null}
+
+----
+[a: b, c: d]
++[{"a":"b"},{"c":"d"}]
+
+----
+[1, 2]: a
+
++
+?
+  - 1
+  - 2
+: a
+
+----
+code: |2+
+    sub foo {
+      …;
+    }
+
+
++{"code":"  sub foo {\n    …;\n  }\n\n"}
+
+----
+code: |
+def foo:
+    pass
+
++Depends
+
+----
+a: x
+a: y
+
++Depends
+
+----
+Q: What is the future of YAML?
+
+* YAML Book
+* YAML2
+* YAML 2.0
+* Yadda - Config
+* YVal - Schema
+* YPath - Search
+* Dual Spec
+* libyaml-1.2
+* libyaml-2.0
+* Pegex + CafeScript
+* Full Stack Implementation
+
+----
+== Yadda
+
+* YAML for config files!
+* http://yadda.org
+* https://github.com/ingydotnet/yadda/blob/master/doc/yadda-spec.pod
+
+----
+== YVal
+
+* YAML Schema and Validation Language
+* In YAML format
+* https://github.com/travis-ci/travis-yaml
+
+----
+== YAML2
+
+* https://github.com/yaml/YAML2/wiki
+
+----
+== YPath
+
+* YAML Selector Engine
+
+----
+Q: Who is actively pushing YAML forward?
++A: Ingy
+
+* Others come and go
+  * Trans
+  * Mofosyne
+* Clark and Oren mostly quiet
+* Kirill quiet
+* Everyone is Welcome
+
+----
+== How can you help YAML?
+
+* YAML becomes more important every year
+* YAML needs a lot of love to be this important
+* YAML needs a new core group of passionate folk
+* YAML probably needs a foundation
+* If you or your company wants to be a part of
+  the future of YAML please talk to me.
+
+----
+== THE END
+
+
