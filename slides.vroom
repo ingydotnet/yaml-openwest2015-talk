@@ -35,7 +35,7 @@ Q: What is YAML?
 Q: Is XML a serialization language?
 +A: No. It's a text markup language.
 ----
-Q: Is JSON a serialzation language?
+Q: Is JSON a serialization language?
 +A: No. It is a data interchange language.
 ----
 Q: What problem was YAML originally trying to solve?
@@ -61,7 +61,7 @@ Q: How did Ingy get involved in YAML?
     http://search.cpan.org/dist/Data-Denter/Denter.pod
 ----
 Q: Have Clark, Oren and Ingy ever all met at same time?
-+A: Yes. In the Fall of 2003 in Portland OR foe a week.
++A: Yes. In the Fall of 2003 in Portland OR for a week.
 ----
 Q: What language was the first YAML processor written in?
 +A: Perl. Dec 2001.
@@ -189,7 +189,7 @@ Q: How many scalar forms does YAML have?
 ----
 Q: What "kinds" of data structures does YAML support?
 +A:
-- mapping (hash, dictionary, associative-array_
+- mapping (hash, dictionary, associative-array)
 - sequence (array, list)
 - scalar (value, string, number, boolean)
 ----
@@ -200,7 +200,7 @@ Q: What does YAML have that JSON doesn't?
 +A:
 - Tags (types)
 - Aliases/Anchors (references)
-- Non string mapping keys
+- Non-string mapping keys
 - Multi-document streams
 ----
 Q: When do you need to quote a YAML string?
